@@ -1,12 +1,33 @@
 const nodemailer = require("nodemailer");
 
-const _transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+// Use the SendGrid transport
+const sendGridTransport = require("nodemailer-sendgrid-transport");
+
+// Use Heroku's SendGrid ENV variables
+// or dev transport options
+let _options;
+if (process.env.NODE_ENV === "production") {
+  _options = sendGridTransport({
+    service: "SendGrid",
+    auth: {
+      api_user: process.env.SENDGRID_USERNAME,
+      api_key: process.env.SENDGRID_PASSWORD
+    }
+  });
+} else {
+  console.log(process.env.EMAIL_USER);
+  console.log(process.env.EMAIL_PASS);
+  _options = {
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  };
+}
+
+// Create the SendGrid transport
+const _transporter = nodemailer.createTransport(_options);
 
 const EmailService = {};
 
