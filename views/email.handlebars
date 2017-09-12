@@ -1,0 +1,31 @@
+
+{{#if result}}
+<pre>
+  {{result}}
+</pre>
+{{/if}}
+
+<div class="row">
+  <div class="panel panel-default col-lg-6 col-lg-offset-3">
+    <div class="panel-heading">
+      Send Emails for FREE!!
+    </div>
+    <div class="panel-body">
+      <form action="/email/new" method="post">
+        <div class="form-group">
+          <label>from: </label><input type="text" name="from" class="form-control"  />
+        </div>
+        <div class="form-group">
+          <label>to: </label><input type="text" name="to" class="form-control"  />
+        </div>
+        <div class="form-group">
+          <label>subject: </label><input type="text" name="subject" class="form-control"  />
+        </div>
+        <div class="form-group">
+          <label>message: </label><input type="text" name="message" class="form-control"  />
+        </div>
+        <button type="submit" class="btn btn-primary">Send Email!</button>
+      </form>
+    </div>
+  </div>
+</div>
