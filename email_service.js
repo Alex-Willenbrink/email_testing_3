@@ -15,8 +15,6 @@ if (process.env.NODE_ENV === "production") {
     }
   });
 } else {
-  console.log(process.env.EMAIL_USER);
-  console.log(process.env.EMAIL_PASS);
   _options = {
     service: "gmail",
     auth: {
